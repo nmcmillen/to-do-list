@@ -1,17 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import ReactDOM from 'react-dom'
+import { useState, useEffect } from 'react';
 
 function App() {
-// set state
+const [ todo, setTodo] = useState([])
 
-// useEffect
+useEffect(() => {
+  console.log('setting state test')
+}, [])
 
   return (
     <div className="App">
       <h1>TO DO LIST</h1>
       <div id="input-create">
         <input type="text" />
-        {/* <input ref={todoNameRef} type="text" /> */}
         <button>Create To-Do</button>
       </div>
       <div>New Todos Go Here</div>
@@ -20,7 +22,6 @@ function App() {
         <button>Pending</button>
         <button>Completed</button>
       </div>
-      
     </div>
   );
 }
