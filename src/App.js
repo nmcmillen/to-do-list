@@ -8,11 +8,19 @@ function App() {
 
   return (
     <div className="App">
-      <h1>TESTING</h1>
-      <input type="text" />
-      {/* <input ref={todoNameRef} type="text" /> */}
-      <button>Create To-Do</button>
-      <button>Clear Completed</button>
+      <h1>TO DO LIST</h1>
+      <div id="input-create">
+        <input type="text" />
+        {/* <input ref={todoNameRef} type="text" /> */}
+        <button>Create To-Do</button>
+      </div>
+      <div>New Todos Go Here</div>
+      <div id="status-buttons">
+        <button>All</button>
+        <button>Pending</button>
+        <button>Completed</button>
+      </div>
+      
     </div>
   );
 }
