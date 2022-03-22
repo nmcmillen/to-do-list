@@ -1,22 +1,41 @@
-import './App.css';
-import ReactDOM from 'react-dom'
-import { useState, useEffect } from 'react';
+import "./App.css";
+import ReactDOM from "react-dom";
+import { useState, useEffect } from "react";
 
 function App() {
-const [ todo, setTodo] = useState([])
+  const [task, setTask] = useState(["task 1", "task 2"]);
 
-useEffect(() => {
-  console.log('setting state test')
-}, [])
+  useEffect(() => {
+    console.log("setting state test");
+  }, []);
+
+  function CreateTask(props) {
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert("form submitted");
+      props.setTask(prev => prev.concat("test task"))
+    }
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          <legend>Create New Task</legend>
+          <input placeholder="Add a new task" />
+          <button>Add Task</button>
+        </fieldset>
+      </form>
+    );
+  }
 
   return (
     <div className="App">
       <h1>TO DO LIST</h1>
-      <div id="input-create">
+      <CreateTask setTask={setTask}/>
+      {/* <div id="input-create">
         <input type="text" />
         <button>Create To-Do</button>
-      </div>
-      <div>New Todos Go Here</div>
+      </div> */}
+      <div>{task}</div>
       <div id="status-buttons">
         <button>All</button>
         <button>Pending</button>
