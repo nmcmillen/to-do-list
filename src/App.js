@@ -1,22 +1,41 @@
-import './App.css';
-import ReactDOM from 'react-dom'
-import { useState, useEffect } from 'react';
+import "./App.css";
+import ReactDOM from "react-dom";
+import { useState, useEffect } from "react";
+import CreateTask from "./CreateTask";
 
 function App() {
-const [ todo, setTodo] = useState([])
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      note: "Give dog a bath",
+      complete: true
+    }, {
+      id: 2,
+      note: "Do laundry",
+      complete: true
+    }, {
+      id: 3,
+      note: "Vacuum floor",
+      complete: false
+    }
+  ]);
 
-useEffect(() => {
-  console.log('setting state test')
-}, [])
+  console.log(tasks)
+
+  useEffect(() => {
+    console.log("setting state test");
+  }, []);
+
+  
 
   return (
     <div className="App">
       <h1>TO DO LIST</h1>
-      <div id="input-create">
-        <input type="text" />
-        <button>Create To-Do</button>
+      <CreateTask setTasks={setTasks}/>
+      <div>
+        {tasks.map(task => <Task key={task.id} note={task.note} complete={task.complete} />)}
       </div>
-      <div>New Todos Go Here</div>
+      {/* <div id="">{task}</div> */}
       <div id="status-buttons">
         <button>All</button>
         <button>Pending</button>
@@ -24,6 +43,30 @@ useEffect(() => {
       </div>
     </div>
   );
+}
+
+// function CreateTask({setTasks}) {
+//   const [note, setNote] = useState()
+
+//   function handleSubmit(e) {
+//     e.preventDefault();
+//     // alert("form submitted");
+//     setTasks(newtask => newtask.concat({id: Date.now(), note, complete: false}))
+//   }
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <fieldset>
+//         <legend>Create New Task</legend>
+//         <input value={note} onChange={e => setNote(e.target.value)} placeholder="Add a new task" />
+//         <button>Add Task</button>
+//       </fieldset>
+//     </form>
+//   );
+// }
+
+function Task(props) {
+  return <div id="created-task">{props.note}</div>
 }
 
 export default App;
