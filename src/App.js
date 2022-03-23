@@ -1,6 +1,7 @@
 import "./App.css";
 import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
+import CreateTask from "./CreateTask";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -25,25 +26,7 @@ function App() {
     console.log("setting state test");
   }, []);
 
-  function CreateTask(props) {
-    const [note, setNote] = useState()
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      // alert("form submitted");
-      props.setTasks(newtask => newtask.concat({id: Date.now(), note, complete: false}))
-    }
-
-    return (
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>Create New Task</legend>
-          <input value={tasks.note} onChange={e => setNote(e.target.value)} placeholder="Add a new task" />
-          <button>Add Task</button>
-        </fieldset>
-      </form>
-    );
-  }
+  
 
   return (
     <div className="App">
@@ -61,6 +44,26 @@ function App() {
     </div>
   );
 }
+
+// function CreateTask({setTasks}) {
+//   const [note, setNote] = useState()
+
+//   function handleSubmit(e) {
+//     e.preventDefault();
+//     // alert("form submitted");
+//     setTasks(newtask => newtask.concat({id: Date.now(), note, complete: false}))
+//   }
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <fieldset>
+//         <legend>Create New Task</legend>
+//         <input value={note} onChange={e => setNote(e.target.value)} placeholder="Add a new task" />
+//         <button>Add Task</button>
+//       </fieldset>
+//     </form>
+//   );
+// }
 
 function Task(props) {
   return <div id="created-task">{props.note}</div>
