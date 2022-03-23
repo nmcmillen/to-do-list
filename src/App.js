@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [task, setTask] = useState(["task 1", "task 2"]);
+  const [task, setTask] = useState([
+  ]);
 
   useEffect(() => {
     console.log("setting state test");
@@ -12,15 +13,15 @@ function App() {
   function CreateTask(props) {
     function handleSubmit(e) {
       e.preventDefault();
-      alert("form submitted");
-      props.setTask(prev => prev.concat("test task"))
+      // alert("form submitted");
+      props.setTask(newtask => newtask.concat(<div id="created-task">Test Task</div>))
     }
 
     return (
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Create New Task</legend>
-          <input placeholder="Add a new task" />
+          <input onChange={e => setTask(e.target.value)}placeholder="Add a new task" />
           <button>Add Task</button>
         </fieldset>
       </form>
@@ -35,7 +36,7 @@ function App() {
         <input type="text" />
         <button>Create To-Do</button>
       </div> */}
-      <div>{task}</div>
+      <div id="">{task}</div>
       <div id="status-buttons">
         <button>All</button>
         <button>Pending</button>
