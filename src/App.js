@@ -8,32 +8,40 @@ function App() {
     {
       id: 1,
       note: "Give dog a bath",
-      complete: true
-    }, {
+      complete: true,
+    },
+    {
       id: 2,
       note: "Do laundry",
-      complete: true
-    }, {
+      complete: true,
+    },
+    {
       id: 3,
       note: "Vacuum floor",
-      complete: false
-    }
+      complete: false,
+    },
   ]);
-
-  console.log(tasks)
+  // console logging tasks array for status updates
+  console.log(tasks);
 
   useEffect(() => {
     console.log("setting state test");
   }, []);
 
-  
-
   return (
     <div className="App">
       <h1>TO DO LIST</h1>
-      <CreateTask setTasks={setTasks}/>
+      <CreateTask setTasks={setTasks} />
       <div>
-        {tasks.map(task => <Task key={task.id} note={task.note} complete={task.complete} />)}
+        {tasks.map((task) => (
+          <Task
+            setTasks={setTasks}
+            id={task.id}
+            key={task.id}
+            note={task.note}
+            complete={task.complete}
+          />
+        ))}
       </div>
       {/* <div id="">{task}</div> */}
       <div id="status-buttons">
@@ -65,8 +73,19 @@ function App() {
 //   );
 // }
 
+// Creates the actual div/area and buttons for the actions on each task/note
 function Task(props) {
-  return <div id="created-task">{props.note}</div>
+  function handleDelete() {
+    props.setTasks((state) => state.filter((task) => task.id != props.id));
+  }
+
+  return (
+    <div id="created-task">
+      {props.note}
+      {/* <button onClick={handleComplete}>Complete</button> */}
+      <button onClick={handleDelete}>Delete</button>
+    </div>
+  );
 }
 
 export default App;
