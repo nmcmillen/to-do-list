@@ -4,29 +4,25 @@ import { useState, useEffect } from "react";
 import CreateTask from "./CreateTask";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      note: "Give dog a bath",
-      complete: true,
-    },
-    {
-      id: 2,
-      note: "Do laundry",
-      complete: true,
-    },
-    {
-      id: 3,
-      note: "Vacuum floor",
-      complete: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
+
   // console logging tasks array for status updates
   console.log(tasks);
 
+  // only run when first rendered to pull local storage if it exists
+  // pulls from the stringified data so have to parse to put in array again
+  // using "keytasklist" as the KEY argument which I understand as key or reference to the data to fetch
   useEffect(() => {
-    console.log("setting state test");
+    if (localStorage.getItem("keytasklist")) {
+      setTasks(JSON.parse(localStorage.getItem("keytasklist")))
+    }
   }, []);
+
+  // local storage setup for when "tasks" changes it will save to local storage
+  // can't store "tasks" array so have to stringify since local storage only accepts strings of text
+  useEffect(() => {
+    localStorage.setItem("keytasklist", JSON.stringify(tasks))
+  }, [tasks]);
 
   return (
     <div className="App">
@@ -114,3 +110,21 @@ function Task(props) {
 }
 
 export default App;
+
+
+
+    // {
+    //   id: 1,
+    //   note: "Give dog a bath",
+    //   complete: true,
+    // },
+    // {
+    //   id: 2,
+    //   note: "Do laundry",
+    //   complete: true,
+    // },
+    // {
+    //   id: 3,
+    //   note: "Vacuum floor",
+    //   complete: false,
+    // },
