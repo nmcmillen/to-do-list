@@ -56,3 +56,24 @@ This is the original Create Task code before moved to own component
 //     </form>
 //   );
 // }
+
+  // function showCompleted () {
+  //   let newCompleted = [...tasks]
+  //   let completed = newCompleted.filter(task => task.complete)
+  //   if (completed.complete === true) {
+  //     // console.log(completed)
+  //     setTasks(newCompleted)
+  //   }
+  // }
+
+  
+  // ***THESE WORK BUT DELETE ITEMS*** FIND ARRAY METHOD THAT SORT BUT DOESN'T CREATE NEW ARRAY
+  // function showCompleted () {
+  //   let completed = tasks.filter(task => task.complete)
+  //   setTasks(completed)
+  // }
+
+  // function showPending () {
+  //   let pending = tasks.filter(task => !task.complete)
+  //   setTasks(pending)
+  // }
