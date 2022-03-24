@@ -25,8 +25,12 @@ function App() {
   }, [tasks]);
 
 
-  // ***THESE WORK BUT DELETE ITEMS*** FIND ARRAY METHOD THAT SORT BUT DOESN'T CREATE NEW ARRAY
+  // function deleteAll () {
+  //   // setTasks to an empty array ([])
+  // }
 
+  
+  // ***THESE WORK BUT DELETE ITEMS*** FIND ARRAY METHOD THAT SORT BUT DOESN'T CREATE NEW ARRAY
   function showCompleted () {
     let completed = tasks.filter(task => task.complete)
     setTasks(completed)
@@ -64,26 +68,6 @@ function App() {
   );
 }
 
-// function CreateTask({setTasks}) {
-//   const [note, setNote] = useState()
-
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     // alert("form submitted");
-//     setTasks(newtask => newtask.concat({id: Date.now(), note, complete: false}))
-//   }
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <fieldset>
-//         <legend>Create New Task</legend>
-//         <input value={note} onChange={e => setNote(e.target.value)} placeholder="Add a new task" />
-//         <button>Add Task</button>
-//       </fieldset>
-//     </form>
-//   );
-// }
-
 // Creates the actual div/area and buttons for the actions on each task/note
 function Task (props) {
   // function deletes task
@@ -94,28 +78,19 @@ function Task (props) {
     props.setTasks((state) => state.filter(task => task.id !== props.id));
   }
 
-  // function updates the task status to complete true or false
-  // function handleComplete(id) {
-  //   const updatedTasks = props.tasks.map((task) => {
-  //     // if this task has the same ID as the edited task
-  //     if (id === task.id) {
-  //       // use object spread to make a new object
-  //       // whose `completed` prop has been inverted
-  //       return { ...task, complete: !task.complete };
-  //     }
-  //     return task;
-  //   });
-  //   props.setTasks(updatedTasks);
-  // }
-
-  const handleComplete = (id) => {
-    let mapped = props.tasks.map(task => {
-      return task.id == id ? { ...task, complete: !task.complete } : { ...task};
-    });
-    props.setTasks(mapped);
+  function handleComplete () {
+    // console.log("test complete state", state)
+    // newTask creates a new object that you can modify and push
+    let newTask = [...props.tasks]
+    let completed = newTask.find(cmp => cmp.id === props.id)
+    if (completed.complete === true) {
+      completed.complete = false;
+    } else {
+      completed.complete = true;
+    }
+    // true ? false : true
+    props.setTasks(newTask)
   }
-
-
 
   return (
     <div id="created-task">
@@ -133,21 +108,3 @@ function Task (props) {
 }
 
 export default App;
-
-
-
-    // {
-    //   id: 1,
-    //   note: "Give dog a bath",
-    //   complete: true,
-    // },
-    // {
-    //   id: 2,
-    //   note: "Do laundry",
-    //   complete: true,
-    // },
-    // {
-    //   id: 3,
-    //   note: "Vacuum floor",
-    //   complete: false,
-    // },
