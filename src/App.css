@@ -10,7 +10,11 @@ body {
   margin: auto;
   background-color: orange;
   width: 30%;
-  border-style: solid;
+  border-bottom: solid;
   border-width: 1px;
   border-radius: 2px;
+}
+
+#created-task:hover {
+  background-color: aliceblue;
 }

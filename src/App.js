@@ -24,10 +24,24 @@ function App() {
     localStorage.setItem("keytasklist", JSON.stringify(tasks))
   }, [tasks]);
 
+
+  // ***THESE WORK BUT DELETE ITEMS*** FIND ARRAY METHOD THAT SORT BUT DOESN'T CREATE NEW ARRAY
+
+  function showCompleted () {
+    let completed = tasks.filter(task => task.complete)
+    setTasks(completed)
+  }
+
+  function showPending () {
+    let pending = tasks.filter(task => !task.complete)
+    setTasks(pending)
+  }
+
   return (
     <div className="App">
       <h1>TO DO LIST</h1>
       <CreateTask setTasks={setTasks} />
+      <h3>{tasks.filter(task => !task.complete).length} tasks left</h3>
       <div>
         {tasks.map((task) => (
           <Task
@@ -43,8 +57,8 @@ function App() {
       {/* <div id="">{task}</div> */}
       <div id="status-buttons">
         <button>All</button>
-        <button>Pending</button>
-        <button>Completed</button>
+        <button onClick={showPending}>Pending</button>
+        <button onClick={showCompleted}>Completed</button>
       </div>
     </div>
   );
@@ -71,7 +85,7 @@ function App() {
 // }
 
 // Creates the actual div/area and buttons for the actions on each task/note
-function Task(props) {
+function Task (props) {
   // function deletes task
   function handleDelete() {
     // Changes (setTasks) state to create new array. Filter runs on each item and if the task.id is not equal
@@ -81,18 +95,27 @@ function Task(props) {
   }
 
   // function updates the task status to complete true or false
-  function handleComplete(id) {
-    const updatedTasks = props.tasks.map((task) => {
-      // if this task has the same ID as the edited task
-      if (id === task.id) {
-        // use object spread to make a new object
-        // whose `completed` prop has been inverted
-        return { ...task, complete: !task.complete };
-      }
-      return task;
+  // function handleComplete(id) {
+  //   const updatedTasks = props.tasks.map((task) => {
+  //     // if this task has the same ID as the edited task
+  //     if (id === task.id) {
+  //       // use object spread to make a new object
+  //       // whose `completed` prop has been inverted
+  //       return { ...task, complete: !task.complete };
+  //     }
+  //     return task;
+  //   });
+  //   props.setTasks(updatedTasks);
+  // }
+
+  const handleComplete = (id) => {
+    let mapped = props.tasks.map(task => {
+      return task.id == id ? { ...task, complete: !task.complete } : { ...task};
     });
-    props.setTasks(updatedTasks);
+    props.setTasks(mapped);
   }
+
+
 
   return (
     <div id="created-task">
