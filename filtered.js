@@ -30,14 +30,36 @@ function App() {
   //   // setTasks to an empty array ([])
   // }
 
-  // SETTING "tasks" TO NEW VARIABLE SO IT CAN BE FILTERED IN THE RETURN STATEMENT
-  let filterTasks = tasks
+  // function showCompleted () {
+  //   let newCompleted = [...tasks]
+  //   let completed = newCompleted.filter(task => task.complete)
+  //   if (completed.complete === true) {
+  //     // console.log(completed)
+  //     setTasks(newCompleted)
+  //   }
+  // }
 
-  if (filter === 'pending') {
-    filterTasks = tasks.filter(task => !task.complete)
-  } else if (filter === 'completed') {
-    filterTasks = tasks.filter(task => task.complete)
+  
+  // ***THESE WORK BUT DELETE ITEMS*** FIND ARRAY METHOD THAT SORT BUT DOESN'T CREATE NEW ARRAY
+  // function showCompleted (tasks) {
+  //   return 
+  //   // setTasks(completed)
+  // }
+
+  // function showPending (tasks) {
+  //   return 
+  //   // setTasks(pending)
+  // }
+
+  
+  let newTasks = tasks;
+  
+  if (filter === 'completed') {
+    newTasks = tasks.filter(task => task.complete)
+  } else if (filter === 'pending') {
+    newTasks = tasks.filter(task => !task.complete)
   }
+
 
   return (
     <div className="App">
@@ -46,7 +68,7 @@ function App() {
       <h3>{tasks.filter(task => !task.complete).length} tasks left</h3>
 
       <div>
-        {filterTasks.map((task) => (
+        {newTasks.map((task) => (
           <Task
             tasks={tasks}
             setTasks={setTasks}
@@ -58,6 +80,7 @@ function App() {
         ))}
       </div>
       
+      {/* <div id="">{task}</div> */}
       <div id="status-buttons">
         <button onClick={() => setFilter('all')}>All</button>
         <button onClick={() => setFilter('pending')}>Pending</button>
@@ -78,6 +101,7 @@ function Task (props) {
   }
 
   function handleComplete () {
+    // console.log("test complete state", state)
     // newTask creates a new object that you can modify and push
     let newTask = [...props.tasks]
     let completed = newTask.find(cmp => cmp.id === props.id)
