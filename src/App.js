@@ -35,6 +35,7 @@ function App() {
       <div>
         {tasks.map((task) => (
           <Task
+            tasks={tasks}
             setTasks={setTasks}
             id={task.id}
             key={task.id}
@@ -75,15 +76,39 @@ function App() {
 
 // Creates the actual div/area and buttons for the actions on each task/note
 function Task(props) {
+  // function deletes task
   function handleDelete() {
-    props.setTasks((state) => state.filter((task) => task.id != props.id));
+    // Changes (setTasks) state to create new array. Filter runs on each item and if the task.id is not equal
+    // to the clicked ID, it will return true and will go to new array. If value false it will be skipped
+    // and deleted 
+    props.setTasks((state) => state.filter(task => task.id !== props.id));
+  }
+
+  // function updates the task status to complete true or false
+  function handleComplete(id) {
+    const updatedTasks = props.tasks.map((task) => {
+      // if this task has the same ID as the edited task
+      if (id === task.id) {
+        // use object spread to make a new object
+        // whose `completed` prop has been inverted
+        return { ...task, complete: !task.complete };
+      }
+      return task;
+    });
+    props.setTasks(updatedTasks);
   }
 
   return (
     <div id="created-task">
       {props.note}
-      {/* <button onClick={handleComplete}>Complete</button> */}
+      <input
+        id={props.id}
+        type="checkbox"
+        onChange={() => handleComplete(props.id)}
+        defaultChecked={props.complete}
+      ></input>
       <button onClick={handleDelete}>Delete</button>
+      {/* create a delete all button function here??? */}
     </div>
   );
 }
