@@ -1,8 +1,6 @@
 import "./App.css";
-import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
 import CreateTask from "./CreateTask";
-import trash from "./images/trash.png";
 import Task from "./Task";
 
 function App(props) {

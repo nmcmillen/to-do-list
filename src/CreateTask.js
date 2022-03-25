@@ -1,6 +1,4 @@
-import react from "react";
-import { useState, useEffect } from "react";
-import App from "./App";
+import { useState } from "react";
 
 export default function CreateTask({ setTasks }) {
   const [note, setNote] = useState();

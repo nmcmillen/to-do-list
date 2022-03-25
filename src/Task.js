@@ -1,6 +1,3 @@
-import react from "react";
-import { useState, useEffect } from "react";
-import App from "./App";
 import trash from "./images/trash.png";
 
 // Creates the actual div/area and buttons for the actions on each task/note
@@ -48,7 +45,7 @@ export default function Task(props) {
           checked={props.complete}
         ></input>
         <button id="delete-btn" onClick={handleDelete}>
-          <img id="trash-btn" src={trash} />
+          <img id="trash-btn" alt="trash" src={trash} />
         </button>
       </div>
     </div>
