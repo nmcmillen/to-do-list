@@ -17,7 +17,7 @@ body {
 }
 
 #created-task:hover {
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
 }
 
 #task-buttons {
@@ -25,12 +25,12 @@ body {
   float: right;
 }
 
-#all-btn, #pending-btn, #completed-btn {
+#all-btn, #pending-btn, #completed-btn, #complete-all-btn {
     background-color: #555555;
     border: none;
     /* border-radius: 5px; */
     color: white;
-    padding: 15px 32px;
+    padding: 15px 15px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -39,8 +39,8 @@ body {
     cursor: pointer;
   }
 
-  #all-btn:hover, #pending-btn:hover, #completed-btn:hover {
-    background-color: #0c0c0c; /* Green */
+  #all-btn:hover, #pending-btn:hover, #completed-btn:hover, #complete-all-btn:hover {
+    background-color: #0c0c0c;
     color: white;
   }
 
