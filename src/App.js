@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
 import CreateTask from "./CreateTask";
 import trash from "./images/trash.png";
+import Task from "./Task";
 
-function App() {
+function App(props) {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
 
@@ -39,6 +40,35 @@ function App() {
     filterTasks = tasks.filter((task) => task.complete);
   }
 
+  // function handleComplete() {
+  //   // newTask creates a new object that you can modify and push
+  //   let newTask = [...props.tasks];
+  //   let completed = newTask.find((status) => status.id === props.id);
+  //   if (completed.complete === true) {
+  //     completed.complete = false;
+  //   } else {
+  //     completed.complete = true;
+  //   }
+  //   // true ? false : true
+  //   props.setTasks(newTask);
+  // }
+
+  function completeAll () {
+    let newTask = [...tasks]
+    newTask.filter(status => status.complete = true);
+    setTasks(newTask)
+  }
+
+  // function completeAll () {
+  //   let completed = tasks.filter(status => status.complete = true);
+  //   setTasks(completed)
+  // }
+
+  // loop over each item in tasks
+  // if complete status is equal to false
+  // then change it to true 
+
+
   return (
     <div className="App">
       <h1>TO DO LIST</h1>
@@ -62,50 +92,8 @@ function App() {
         <button id="all-btn" onClick={() => setFilter("all")}>All</button>
         <button id="pending-btn" onClick={() => setFilter("pending")}>Pending</button>
         <button id="completed-btn" onClick={() => setFilter("completed")}>Completed</button>
+        <button onClick={completeAll}>Complete All</button>
       </div>
-    </div>
-  );
-}
-
-// Creates the actual div/area and buttons for the actions on each task/note
-function Task(props) {
-  // function deletes task
-  function handleDelete() {
-    // Changes (setTasks) state to create new array. Filter runs on each item and if the task.id is not equal
-    // to the clicked ID, it will return true and will go to new array. If value false it will be skipped
-    // and deleted
-    props.setTasks((state) => state.filter((task) => task.id !== props.id));
-  }
-
-  function handleComplete() {
-    // newTask creates a new object that you can modify and push
-    let newTask = [...props.tasks];
-    let completed = newTask.find((cmp) => cmp.id === props.id);
-    if (completed.complete === true) {
-      completed.complete = false;
-    } else {
-      completed.complete = true;
-    }
-    // true ? false : true
-    props.setTasks(newTask);
-  }
-
-  return (
-    <div id="created-task">
-      {props.note}
-      <div id="task-buttons">
-        <input
-          className="check-btn"
-          id={props.id}
-          type="checkbox"
-          onChange={() => handleComplete(props.id)}
-          defaultChecked={props.complete}
-        ></input>
-        <button id="delete-btn" onClick={handleDelete}>
-          <img id="trash-btn" src={trash} />
-        </button>
-      </div>
-      {/* create a complete all button function here??? */}
     </div>
   );
 }

@@ -1,3 +1,17 @@
+function completeAll () {
+
+  let newTask = [...tasks]
+  let completed = newTask.filter(status => status.complete === false);
+  console.log(completed)
+  if (completed.complete === false) {
+    completed.complete = true
+  }
+  setTasks(newTask)
+}
+
+
+
+
 Josh example complete with sandwishes
   // function Button(props){
     //   function handleClick(e) {
