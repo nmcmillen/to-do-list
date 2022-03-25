@@ -42,21 +42,18 @@ function App(props) {
 
 
   function completeAll () {
-    // let newTask = [...tasks]
-    // newTask.filter(status => status.complete = true);
-    // setTasks(newTask)
-    let completed = tasks.filter(status => status.complete = true);
-    setTasks(completed)
+    let checkall = [...tasks]
+    checkall.filter(status => status.complete = true);
+    setTasks(checkall)
+    // let completed = tasks.filter(status => status.complete = true);
+    // setTasks(completed)
   }
 
-  // function deselectAll () {
-  //   // let newTask = [...tasks]
-  //   // newTask.filter(status => status.complete = true);
-  //   // setTasks(newTask)
-  //   let deselect = tasks.filter(status => status.complete = false);
-  //   setTasks(deselect)
-  // }
-
+  function deselectAll () {
+    let deselect = [...tasks]
+    deselect.filter(status => status.complete = false);
+    setTasks(deselect)
+  }
 
   return (
     <div className="App">
@@ -82,7 +79,7 @@ function App(props) {
         <button id="pending-btn" onClick={() => setFilter("pending")}>Pending</button>
         <button id="completed-btn" onClick={() => setFilter("completed")}>Completed</button>
         <button id="complete-all-btn" onClick={completeAll}>Complete All</button>
-        {/* <button id="deselect-btn" onClick={deselectAll}>Deselect All</button> */}
+        <button id="deselect-btn" onClick={deselectAll}>Deselect All</button>
       </div>
     </div>
   );
