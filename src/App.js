@@ -27,10 +27,6 @@ function App(props) {
     localStorage.setItem("keytasklist", JSON.stringify(tasks));
   }, [tasks]);
 
-  // function deleteAll () {
-  //   // setTasks to an empty array ([])
-  // }
-
   // SETTING "tasks" TO NEW VARIABLE SO IT CAN BE FILTERED IN THE RETURN STATEMENT
   let filterTasks = tasks;
 
@@ -40,19 +36,18 @@ function App(props) {
     filterTasks = tasks.filter((task) => task.complete);
   }
 
-
-  function completeAll () {
-    let checkall = [...tasks]
-    checkall.filter(status => status.complete = true);
-    setTasks(checkall)
+  function completeAll() {
+    let checkall = [...tasks];
+    checkall.filter((status) => (status.complete = true));
+    setTasks(checkall);
     // let completed = tasks.filter(status => status.complete = true);
     // setTasks(completed)
   }
 
-  function deselectAll () {
-    let deselect = [...tasks]
-    deselect.filter(status => status.complete = false);
-    setTasks(deselect)
+  function deselectAll() {
+    let deselect = [...tasks];
+    deselect.filter((status) => (status.complete = false));
+    setTasks(deselect);
   }
 
   return (
@@ -75,11 +70,21 @@ function App(props) {
       </div>
 
       <div id="status-buttons">
-        <button id="all-btn" onClick={() => setFilter("all")}>All</button>
-        <button id="pending-btn" onClick={() => setFilter("pending")}>Pending</button>
-        <button id="completed-btn" onClick={() => setFilter("completed")}>Completed</button>
-        <button id="complete-all-btn" onClick={completeAll}>Complete All</button>
-        <button id="deselect-btn" onClick={deselectAll}>Deselect All</button>
+        <button id="all-btn" onClick={() => setFilter("all")}>
+          All
+        </button>
+        <button id="pending-btn" onClick={() => setFilter("pending")}>
+          Pending
+        </button>
+        <button id="completed-btn" onClick={() => setFilter("completed")}>
+          Completed
+        </button>
+        <button id="complete-all-btn" onClick={completeAll}>
+          Complete All
+        </button>
+        <button id="deselect-btn" onClick={deselectAll}>
+          Deselect All
+        </button>
       </div>
     </div>
   );

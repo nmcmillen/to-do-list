@@ -14,7 +14,6 @@ export default function CreateTask({setTasks}) {
   
     return (
       <form onSubmit={handleSubmit}>
-          {/* <legend>Create New Task</legend> */}
           <input required minLength="1" value={note || ''} onChange={e => setNote(e.target.value)} placeholder="Add a new task" />
           <button>Add Task</button>
       </form>
