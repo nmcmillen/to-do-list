@@ -7,7 +7,6 @@ import trash from "./images/trash.png";
 export default function Task(props) {
   // function deletes task
 
-
   // function handleDelete() {
   //   // Changes (setTasks) state to create new array. Filter runs on each item and if the task.id is not equal
   //   // to the clicked ID, it will return true and will go to new array. If value false it will be skipped
@@ -16,12 +15,12 @@ export default function Task(props) {
   // }
 
   function handleDelete() {
-    let deleteTask = [...props.tasks]
-    let deleted = deleteTask.find(change => change.id === props.id)
+    let deleteTask = [...props.tasks];
+    let deleted = deleteTask.find((change) => change.id === props.id);
     if (deleted.status === "active") {
-      deleted.status = "deleted"
+      deleted.status = "deleted";
     }
-    props.setTasks(deleteTask)
+    props.setTasks(deleteTask);
   }
 
   function handleComplete() {
