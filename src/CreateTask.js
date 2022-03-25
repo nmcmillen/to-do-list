@@ -8,7 +8,7 @@ export default function CreateTask({setTasks}) {
     function handleSubmit(e) {
       e.preventDefault();
       // alert("form submitted");
-      setTasks(state => state.concat({id: Date.now(), note, complete: false}))
+      setTasks(state => state.concat({id: Date.now(), note, complete: false, status: "active"}))
       setNote("")
     }
   
