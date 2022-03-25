@@ -6,11 +6,22 @@ import trash from "./images/trash.png";
 // Creates the actual div/area and buttons for the actions on each task/note
 export default function Task(props) {
   // function deletes task
+
+
+  // function handleDelete() {
+  //   // Changes (setTasks) state to create new array. Filter runs on each item and if the task.id is not equal
+  //   // to the clicked ID, it will return true and will go to new array. If value false it will be skipped
+  //   // and deleted
+  //   props.setTasks((state) => state.filter((task) => task.id !== props.id));
+  // }
+
   function handleDelete() {
-    // Changes (setTasks) state to create new array. Filter runs on each item and if the task.id is not equal
-    // to the clicked ID, it will return true and will go to new array. If value false it will be skipped
-    // and deleted
-    props.setTasks((state) => state.filter((task) => task.id !== props.id));
+    let deleteTask = [...props.tasks]
+    let deleted = deleteTask.find(change => change.id === props.id)
+    if (deleted.status === "active") {
+      deleted.status = "deleted"
+    }
+    props.setTasks(deleteTask)
   }
 
   function handleComplete() {

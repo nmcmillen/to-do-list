@@ -28,25 +28,27 @@ function App(props) {
   }, [tasks]);
 
   // SETTING "tasks" TO NEW VARIABLE SO IT CAN BE FILTERED IN THE RETURN STATEMENT
-  let filterTasks = tasks;
+  let filterTasks = tasks.filter(item => item.status !== "deleted");
 
   if (filter === "pending") {
-    filterTasks = tasks.filter((task) => !task.complete);
+    filterTasks = filterTasks.filter((task) => !task.complete);
   } else if (filter === "completed") {
-    filterTasks = tasks.filter((task) => task.complete);
+    filterTasks = filterTasks.filter((task) => task.complete);
   }
 
   function completeAll() {
     let checkall = [...tasks];
-    checkall.filter((status) => (status.complete = true));
+    checkall.forEach((status) => (status.complete = true));
     setTasks(checkall);
-    // let completed = tasks.filter(status => status.complete = true);
+    // let completed = tasks.forEach(status => status.complete = true);
     // setTasks(completed)
   }
 
   function deselectAll() {
     let deselect = [...tasks];
-    deselect.filter((status) => (status.complete = false));
+    deselect.forEach((status) => {
+      status.complete = false
+    })
     setTasks(deselect);
   }
 
@@ -54,7 +56,7 @@ function App(props) {
     <div className="App">
       <h1>TO DO LIST</h1>
       <CreateTask setTasks={setTasks} />
-      <h3>{tasks.filter((task) => !task.complete).length} tasks left</h3>
+      <h3>{tasks.filter((task) => !task.complete && task.status !=="deleted").length} tasks left</h3>
 
       <div>
         {filterTasks.map((task) => (
@@ -65,6 +67,7 @@ function App(props) {
             key={task.id}
             note={task.note}
             complete={task.complete}
+            status={task.status}
           />
         ))}
       </div>
