@@ -3,18 +3,70 @@
 }
 
 body {
-  background: lightgray;
+  background: #d6d6d6;
 }
 
 #created-task {
   margin: auto;
   background-color: orange;
-  width: 30%;
+  width: 400px;
   border-bottom: solid;
   border-width: 1px;
   border-radius: 2px;
+  padding: 5px;
 }
 
 #created-task:hover {
   background-color: aliceblue;
 }
+
+#task-buttons {
+  position: relative;
+  float: right;
+}
+
+#all-btn, #pending-btn, #completed-btn {
+    background-color: #555555;
+    border: none;
+    /* border-radius: 5px; */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  #all-btn:hover, #pending-btn:hover, #completed-btn:hover {
+    background-color: #0c0c0c; /* Green */
+    color: white;
+  }
+
+#delete-btn {
+  background: none;
+  border: none;
+  height: 16px;
+  cursor: pointer;
+}
+
+#trash-btn {
+  max-height: 24px;
+}
+
+#trash-btn:hover {
+  background-color: orangered;
+}
+
+#check-btn {
+  max-height: 30px;
+}
+
+/* input[type="checkbox" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 10px 3px 3px 4px;
+} */
