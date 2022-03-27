@@ -1,8 +1,6 @@
 import "./App.css";
-import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
 import CreateTask from "./CreateTask";
-import trash from "./images/trash.png";
 import Task from "./Task";
 
 function App(props) {
@@ -57,11 +55,7 @@ function App(props) {
       <h1>TO DO LIST</h1>
       <CreateTask setTasks={setTasks} />
       <h3 id="tasks-left">
-        {
-          tasks.filter((task) => !task.complete && task.status !== "deleted")
-            .length
-        }{" "}
-        tasks left
+        {tasks.filter((task) => !task.complete && task.status !== "deleted").length}{" "}tasks left
       </h3>
 
       <div>
