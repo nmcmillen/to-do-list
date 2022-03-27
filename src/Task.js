@@ -43,7 +43,8 @@ export default function Task(props) {
           type="checkbox"
           onChange={() => handleComplete(props.id)}
           checked={props.complete}
-        ></input>
+        >
+        </input>
         <button id="delete-btn" onClick={handleDelete}>
           <img id="trash-btn" alt="trash" src={trash} />
         </button>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function CreateTask({ setTasks }) {
-  const [note, setNote] = useState();
+  const [note, setNote] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,7 +17,7 @@ export default function CreateTask({ setTasks }) {
       <input
         required
         minLength="1"
-        value={note || ""}
+        value={note}
         onChange={(e) => setNote(e.target.value)}
         placeholder="Add a new task"
       />
